@@ -3,7 +3,7 @@ import random
 
 # Překladová mapa pro žánry na RAWG
 GENRE_MAP = {
-    "rpg": "role-playing-games",
+    "rpg": "role-playing-games-rpg",
     "akcni": "action", "action": "action",
     "indie": "indie",
     "dobrodruzne": "adventure", "adventure": "adventure",
@@ -147,3 +147,4 @@ if __name__ == "__main__":
         print(f"- {hra['Jmeno']} ({datum_format})")
 
 """
+
