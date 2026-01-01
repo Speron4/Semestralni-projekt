@@ -1,4 +1,4 @@
-# Nezapomenout pridat get_top_10_by_year do importu na zacatku!
+
 from api_manager import vyhledej_hry, get_top_10_by_year
 
 
@@ -49,4 +49,5 @@ def menu():
 
         elif volba == "5":
             print("Koncim...")
+
             break
