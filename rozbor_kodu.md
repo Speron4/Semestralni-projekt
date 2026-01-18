@@ -1,6 +1,6 @@
 1. Komunikační vrstva (api_manager.py)
 Modul zajišťuje nízkoúrovňové požadavky na API a transformaci dat.
-Mapování vstupů: Slovníky GENRE_MAP a PLATFORM_MAP slouží jako translátor mezi uživatelským vstupem (string) a API slugem/ID.
+Mapování vstupů: Slovníky GENRE_MAP a PLATFORM_MAP slouží jako překladatel mezi uživatelským vstupem (string) a API slugem/ID.
 Dynamické parametry: Funkce vyhledej_hry sestavuje objekt params, který určuje filtry pro URL dotaz.
 
 Logika Strict Mode:
