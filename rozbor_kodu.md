@@ -1,18 +1,28 @@
 1. Komunikační vrstva (api_manager.py)
+   
 Modul zajišťuje nízkoúrovňové požadavky na API a transformaci dat.
 Mapování vstupů: Slovníky GENRE_MAP a PLATFORM_MAP slouží jako překladatel mezi uživatelským vstupem (string) a API slugem/ID.
 Dynamické parametry: Funkce vyhledej_hry sestavuje objekt params, který určuje filtry pro URL dotaz.
 
-Logika Strict Mode:
+.join(): Tato metoda je klíčová. Umožňuje uživateli zadat seznam (např. ["action", "rpg"]) a automaticky ho převede na formát action,rpg, který vyžaduje API.
 
-Python
+page_size: Nastavením této hodnoty omezujeme množství přenesených dat, což zrychluje odezvu aplikace.
+
+Data, která přijdou z API, jsou obrovské vnořené struktury (JSON). Funkce _formatuj_hru slouží jako filtr, který vytáhne jen to, co nás zajímá.
+
 ```python
-if strict and slugy_zanru:
-    h_slugs = [z["slug"] for z in h.get("genres", [])]
-    if not all(sz in h_slugs for sz in slugy_zanru):
-        continue
+def _formatuj_hru(h):
+    return {
+        "jmeno": h.get("name"),
+        "rok": (h.get("released") or "N/A")[:4],
+        "rating": h.get("rating", 0),
+        # ...
+    }
 ```
-Program využívá list comprehension k extrakci žánrů z každé nalezené hry a funkci all() k ověření kompletní shody se zadáním.
+List Comprehension: 
+Rychle vytvoří seznam slugů žánrů pro každou konkrétní hru.
+all(): Tato vestavěná funkce Pythonu zkontroluje, zda jsou všechny hledané žánry přítomny v seznamu žánrů dané hry. Pokud ne, continue hru přeskočí a nepřidá ji do výsledků.
+
 
 2. Uživatelské rozhraní (menu_pro_uzivatele.py)
 Zajišťuje interakci s uživatelem a vizualizaci dat.
