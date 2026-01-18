@@ -6,19 +6,20 @@ Dynamické parametry: Funkce vyhledej_hry sestavuje objekt params, který určuj
 Logika Strict Mode:
 
 Python
-
+```python
 if strict and slugy_zanru:
     h_slugs = [z["slug"] for z in h.get("genres", [])]
     if not all(sz in h_slugs for sz in slugy_zanru):
         continue
+```
 Program využívá list comprehension k extrakci žánrů z každé nalezené hry a funkci all() k ověření kompletní shody se zadáním.
 
 2. Uživatelské rozhraní (menu_pro_uzivatele.py)
 Zajišťuje interakci s uživatelem a vizualizaci dat.
 
-Robustní výpis: Funkce tiskni používá metodu .get() pro přístup k datům ve slovníku. Tím předchází chybám typu KeyError, pokud API vrátí neúplný datový objekt.
+Funkce tiskni používá metodu .get() pro přístup k datům ve slovníku. Tím předchází chybám typu KeyError, pokud API vrátí neúplný datový objekt.
 
-Smyčka aplikace: Hlavní menu běží v nekonečném cyklu while True, který je ukončen pouze explicitním příkazem (volba 6).
+Smyčka aplikace: Hlavní menu běží v nekonečném cyklu while True, který je ukončen pouze příkazem (volba 6).
 
 3. Algoritmus náhodného výběru (get_random_game)
 Pro dosažení maximální diverzity výsledků je implementována dvoustupňová náhoda:
