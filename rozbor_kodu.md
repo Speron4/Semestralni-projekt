@@ -1,6 +1,6 @@
-#api manager
+`api manager`
 Tato funkce slouží k bezpečnému získání přístupového klíče:
-Používá blok try-except pro ošetření chyby FileNotFoundError. Pokud soubor api.txt neexistuje, funkce nezhodí celou aplikaci, ale vrátí None.
+Používá blok `try-except` pro ošetření chyby `FileNotFoundError`. Pokud soubor api.txt neexistuje, funkce nezhodí celou aplikaci, ale vrátí `None`.
 ```python
 def _get_api_key():
     try:
@@ -9,10 +9,10 @@ def _get_api_key():
     except FileNotFoundError:
         return None
 ```
-
-_formatuj_hru(h)
+---
+`_formatuj_hru(h)`
 Pomocná funkce, která transformuje rozsáhlý a nepřehledný objekt z API na jednoduchý a čitelný slovník.
-Metoda .get() zajišťuje, že pokud nějaký údaj v databázi chybí, aplikace nespadne.
+Metoda `.get()` zajišťuje, že pokud nějaký údaj v databázi chybí, aplikace nespadne.
 ```python
 def _formatuj_hru(h):
     return {
@@ -24,10 +24,11 @@ def _formatuj_hru(h):
         "slug": h.get("slug")
     }
 ```
-vyhledej_hry()
+---
+`vyhledej_hry()`
 Sestavuje HTTP požadavky a implementuje pokročilé filtrování.
-Převádí uživatelský text na seznam slugů pomocí GENRE_MAP.
-Pomocí cyklu a funkce all() jsem do aplikace přidal možnost striktního vyhledávání, kdy hra musí splňovat všechna kritéria najednou.
+Převádí uživatelský text na seznam slugů pomocí `GENRE_MAP`.
+Pomocí cyklu a funkce `all()` jsem do aplikace přidal možnost striktního vyhledávání, kdy hra musí splňovat všechna kritéria najednou.
 ```python
 def vyhledej_hry(genres="", platforms="", strict=False):
     klic = _get_api_key()
@@ -46,10 +47,10 @@ def vyhledej_hry(genres="", platforms="", strict=False):
         hry.append(_formatuj_hru(h))
     return hry
 ```
-get_top_10_by_year(year)
+`get_top_10_by_year(year)`
 Funkce specializovaná na získání dat pro konkrétní rok.
 Používá parametr dates pro vymezení celého kalendářního roku.
-Parametr ordering: "-rating" říká API, aby výsledky seřadilo sestupně od nejlépe hodnocených po nejhorší.
+Parametr ordering: `"-rating"` říká API, aby výsledky seřadilo sestupně od nejlépe hodnocených po nejhorší.
 ```python
 def get_top_10_by_year(year):
     params = {
@@ -59,9 +60,10 @@ def get_top_10_by_year(year):
         "page_size": 10
     }
 ```
-get_random_game()
+---
+`get_random_game()`
 Zajišťuje funkci "Šťastný los" s vysokou mírou variability.
-Prvně se náhodně zvolí jedna z deseti stránek výsledků (random.randint) a následně jedna konkrétní hra z této stránky (random.choice).
+Prvně se náhodně zvolí jedna z deseti stránek výsledků (`random.randint`) a následně jedna konkrétní hra z této stránky (`random.choice`).
 ```python
 def get_random_game(genres="", platform="", year=""):
     # ... fallback logika pro prázdné vstupy ...
@@ -77,15 +79,16 @@ def get_random_game(genres="", platform="", year=""):
     except:
         return None
 ```
-# menu_pro_uzivatele.py
+---
+`menu_pro_uzivatele.py`
 
 Zajišťuje interakci s uživatelem a čitelný výstup do terminálu.
 
-tiskni(vysledky): Formátuje surová data z API do přehledných bloků. Používá metodu .get(), aby program nespadl při chybějících údajích (např. u chybějícího roku vydání).
+`tiskni(vysledky)`: Formátuje surová data z API do přehledných bloků. Používá metodu `.get()`, aby program nespadl při chybějících údajích (např. u chybějícího roku vydání).
 
 menu(): Hlavní ovládací prvek aplikace. Běží v nekonečné smyčce while True, která umožňuje opakované hledání bez restartu programu. Ukončuje se pouze volbou "6" (break).
-
-# main.py
+---
+`main.py`
 Slouží jako spouštěč.
 ```python
 from menu_pro_uzivatele import menu
