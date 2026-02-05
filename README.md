@@ -3,15 +3,11 @@ Tento projekt je interaktivní konzolová aplikace v Pythonu, která slouží k 
 
 ---
 # Klíčové funkce:
-Hledání podle žánrů: Vyhledávání her na základě jednoho nebo více žánrů (např. RPG, Action).
-
-Filtr platforem: Možnost omezit výsledky na konkrétní zařízení (PC, PS5, Xbox atd.).
-
-Strict Mode: Pokročilé vyhledávání, které vyžaduje, aby hra splňovala všechny zadané žánry současně.
-
-TOP 10 podle roku: Výpis nejlépe hodnocených her pro libovolný zadaný rok.
-
-Šťastný los: Náhodný výběr hry na základě volitelných preferencí.
+1.Hledání podle žánrů: Vyhledávání her na základě jednoho nebo více žánrů (např. RPG, Action).
+2. Filtr platforem: Možnost omezit výsledky na konkrétní zařízení (PC, PS5, Xbox atd.).
+3.Strict Mode: Pokročilé vyhledávání, které vyžaduje, aby hra splňovala všechny zadané žánry současně.
+4.TOP 10 podle roku: Výpis nejlépe hodnocených her pro libovolný zadaný rok.
+5.Šťastný los: Náhodný výběr hry na základě volitelných preferencí.
 
 ---
 # 🛠 Použité technologie
@@ -19,9 +15,9 @@ Python
 
 🔹[Requests](https://pypi.org/project/requests/)
 
-🔹 [RAWG API](https://rawg.io/apidocs)
+🔹[RAWG API](https://rawg.io/apidocs)
 
-🔹 [Random](https://docs.python.org/3/library/random.html)
+🔹[Random](https://docs.python.org/3/library/random.html)
 
 ## Spuštění projektu:
 
@@ -29,7 +25,7 @@ Python
     ```bash
      pip install requests
     ```
-   Random patří do standardní knihovny (Built-in)
+   random patří do standardní knihovny (Built-in)
 
 2.  **Spuštění aplikace**:
     ```bash
