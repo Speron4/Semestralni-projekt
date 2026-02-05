@@ -1,14 +1,17 @@
 Neúplná data z API:
 Některé starší nebo méně známé hry v databázi RAWG nemají vyplněná všechna pole (např. chybí rok vydání). 
-Aby aplikace nespadla při pokusu o výpis, používáme metodu .get() s výchozí hodnotou.
+Aby aplikace nespadla při pokusu o výpis, používáme metodu `.get()` s výchozí hodnotou.
 ```python
 "rok": (h.get("released") or "N/A")[:4],
 ```
+
+---
 GENRE_MAP:
 Místo celého názvu massively-multiplayer stačí zadat krátké mmo.
-Před odesláním dotazu aplikace všechny vstupy pomocí .strip().lower() očistí od nechtěných mezer a převede na malá písmena,
+Před odesláním dotazu aplikace všechny vstupy pomocí `.strip().lower()` očistí od nechtěných mezer a převede na malá písmena,
 čímž eliminuje chyby při zadávání.
 
+---
 Logika u náhodného výběru:
 Pokud uživatel u funkce „Šťastný los“ nevyplnil žádné preference (žánr nebo platformu), aplikace by v původní verzi odeslala prázdný dotaz,
 což by vedlo k chybě nebo nekonzistentním výsledkům.
