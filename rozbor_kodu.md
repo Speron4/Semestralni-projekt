@@ -86,7 +86,7 @@ Zajišťuje interakci s uživatelem a čitelný výstup do terminálu.
 
 `tiskni(vysledky)`: Formátuje surová data z API do přehledných bloků. Používá metodu `.get()`, aby program nespadl při chybějících údajích (např. u chybějícího roku vydání).
 
-menu(): Hlavní ovládací prvek aplikace. Běží v nekonečné smyčce while True, která umožňuje opakované hledání bez restartu programu. Ukončuje se pouze volbou "6" (break).
+#### menu(): Hlavní ovládací prvek aplikace. Běží v nekonečné smyčce while True, která umožňuje opakované hledání bez restartu programu. Ukončuje se pouze volbou "6" (break).
 ---
 `main.py`
 Slouží jako spouštěč.
