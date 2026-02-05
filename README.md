@@ -11,6 +11,7 @@ Strict Mode: Pokročilé vyhledávání, které vyžaduje, aby hra splňovala v�
 TOP 10 podle roku: Výpis nejlépe hodnocených her pro libovolný zadaný rok.
 
 Šťastný los: Náhodný výběr hry na základě volitelných preferencí.
+
 ---
 # 🛠 Použité technologie
 Python
