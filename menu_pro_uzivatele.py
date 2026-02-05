@@ -2,6 +2,13 @@ from api_manager import vyhledej_hry, get_top_10_by_year, get_random_game
 
 
 def tiskni(vysledky, specialni_text=None):
+    """
+    Vypíše přehledně data o hrách do terminálu.
+    
+    Args:
+        vysledky (list|dict): Jedna hra nebo seznam her k vypsání.
+        specialni_text (str): Volitelný nadpis (např. "STASTNA HRA").
+    """
     if not vysledky:
         print("\n--- Zadna hra neodpovida zadani ---")
         return
@@ -28,6 +35,12 @@ def tiskni(vysledky, specialni_text=None):
 
 
 def menu():
+    """
+    Spustí interaktivní textové rozhraní pro uživatele.
+
+    Smyčka běží, dokud uživatel nezvolí možnost 'Konec'. Zajišťuje 
+    předání správných vstupů funkcím z api_manager.py a volá výpis výsledků.
+    """
     while True:
         print("\n   --- HERNI FILTR ---")
         print("1. Hledat podle zanru")
@@ -67,4 +80,5 @@ def menu():
 
         elif volba == "6":
             print("Zabavne hrani...")
+
             break
