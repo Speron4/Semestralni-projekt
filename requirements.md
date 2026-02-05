@@ -1,7 +1,7 @@
 Python
 
-🔹[Requests](https://pypi.org/project/requests/)
+[Requests](https://pypi.org/project/requests/)
 
-🔹 [RAWG API](https://rawg.io/apidocs)
+[RAWG API](https://rawg.io/apidocs)
 
-🔹 [Random](https://docs.python.org/3/library/random.html)
+[Random](https://docs.python.org/3/library/random.html)
