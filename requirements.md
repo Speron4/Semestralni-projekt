@@ -1,4 +1,4 @@
-  Python
+Python
 
 🔹[Requests](https://pypi.org/project/requests/)
 
