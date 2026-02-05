@@ -23,7 +23,13 @@ PLATFORM_MAP = {
 
 
 def _get_api_key():
-    """Pomocná funkce pro načtení API klíče."""
+    """
+    Načte API klíč pro službu RAWG z lokálního souboru.
+
+    Returns:
+        str: Obsah souboru api.txt (očištěný klíč), nebo None, pokud soubor neexistuje.
+    """
+    
     try:
         with open("api.txt", "r") as f:
             return f.read().strip()
@@ -32,7 +38,19 @@ def _get_api_key():
 
 
 def _formatuj_hru(h):
-    """Sjednotí formátování dat o hře z API odpovědi."""
+  """
+    Udělá v datech o hře pořádek a vybere jen to důležité.
+
+    API nám pošle o každé hře stovky řádků informací. Tato funkce 
+    z nich vytáhne jen pár věcí (název, rok, hodnocení, žánry a platformy).
+
+    Args:
+        h (dict): Syrová a nepřehledná data, která přišla přímo z internetu (API).
+
+    Returns:
+        dict: Úhledný balíček informací o hře. Pokud rok vydání neexistuje, 
+              napíše místo něj 'N/A'.
+    """
     return {
         "jmeno": h.get("name"),
         "rok": (h.get("released") or "N/A")[:4],
@@ -44,6 +62,19 @@ def _formatuj_hru(h):
 
 
 def vyhledej_hry(genres="", platforms="", strict=False):
+    """
+    Najde seznam her podle toho, co chce uživatel hrat a na čem to chce hrát.
+
+    Args:
+        genres (str): Žánry, které hledá (např. "akcni, rpg").
+        platforms (str): Na čem chce hrá (např. "pc, ps5").
+        strict (bool): Pokud je True, najde jen hry, které mají VŠECHNY zadané žánry. 
+                       Pokud je False, najde cokoli, co odpovídá aspoň jednomu.
+
+    Returns:
+        list: Seznam nalezených her.
+    """
+    
     klic = _get_api_key()
     if not klic: return []
 
@@ -84,6 +115,19 @@ def vyhledej_hry(genres="", platforms="", strict=False):
 
 
 def get_top_10_by_year(year):
+    """
+    Sestaví žebříček 10 nejlepších her pro konkrétní rok.
+
+    Funkce pošle dotaz na API s nastaveným časovým rozmezím (od 1. ledna do 31. prosince 
+    daného roku) a seřadí výsledky sestupně podle hodnocení uživatelů. 
+    
+    Args:
+        year (int|str): Rok, pro který se má žebříček vytvořit.
+        
+    Returns:
+        list: Seznam 10 her s nejvyšším ratingem, zformátovaných pro snadné použití.
+    """
+    
     klic = _get_api_key()
     if not klic: return []
 
@@ -102,6 +146,21 @@ def get_top_10_by_year(year):
 
 
 def get_random_game(genres="", platform="", year=""):
+    """
+    Vybere jednu náhodnou hru na základě filtrů nebo automatického losování.
+
+    Pokud uživatel nezadá žánr nebo platformu, funkce automaticky vybere náhodnou 
+    hodnotu z dostupných map (GENRE_MAP, PLATFORM_MAP). Pro zajištění vysoké 
+    variability a zamezení opakování vvýsledků, kód přistupuje na náhodně zvolenou stránku v API (1 až 10). 
+   
+     Args:
+        genres (str): Seznam žánrů. Pokud je prázdný, vybere se náhodný žánr z mapy.
+        platform (str): Seznam platforem. Pokud je prázdný, vybere se náhodná platforma.
+        year (str): Volitelný filtr roku (aktuálně v API volání nepoužit).
+
+    Returns:
+        dict: Vrátí jednu náhodnou hru, nebo None při selhání.
+    """
     klic = _get_api_key()
     if not klic: return None
 
@@ -171,3 +230,4 @@ if __name__ == "__main__":
         print(f"- {hra['Jmeno']} ({datum_format})")
 
 """
+
